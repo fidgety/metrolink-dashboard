@@ -10,9 +10,9 @@ const config = {
     entry: './client/app/index.js',
     devtool: 'source-map',
     output: {
-        path: __dirname + '/client/public',
+        path: __dirname + '/client/public/bundles',
         filename: 'bundle.js',
-        publicPath: __dirname + '/client/public'
+        publicPath: __dirname + '/client/public/bundles'
     },
     module: {
         loaders: [{
@@ -41,6 +41,9 @@ const config = {
         }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
         new ExtractTextPlugin('./styles.css')
     ],
     node: {
@@ -52,7 +55,7 @@ const config = {
 };
 
 
-if (env !== 'prod') {
+if (env !== 'production') {
     new WebpackDevServer(webpack(config), {
         contentBase: './client/public',
         historyApiFallback: true,

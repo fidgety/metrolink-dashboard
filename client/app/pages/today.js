@@ -22,7 +22,6 @@ export default connect(selectState)(React.createClass({
         this.props.dispatch(todaysRequests());
     },
     render() {
-        console.log(this.props);
         return <div>
             <div className="total">{this.props.total}</div>
             <ul>{buildStationList(this.props.stations)}</ul>

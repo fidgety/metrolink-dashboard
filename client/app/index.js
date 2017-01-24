@@ -3,7 +3,7 @@ import store from './store';
 import React from 'react'; // eslint-disable-line
 import ReactDOM from 'react-dom';
 
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, Redirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 
@@ -16,7 +16,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render((
     <Provider store={store}>
         <Router history={history}>
-            <Route path="/" component={Today} />
+            <Redirect from="/" to="/today" />
+            <Route path="/today" component={Today} />
         </Router>
     </Provider>
 ), document.getElementById('app'));
