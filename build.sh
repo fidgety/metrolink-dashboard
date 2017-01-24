@@ -5,4 +5,4 @@ cp  ./package.json ./build/package.json &&
 cd build &&
 npm i --production &&
 cd .. &&
-tar -zcvf metrolink-api.tar.gz build/*
+tar -zcvf metrolink-dashboard.tar.gz build/*
