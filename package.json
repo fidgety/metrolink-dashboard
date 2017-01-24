@@ -1,0 +1,31 @@
+{
+  "name": "metrolink-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "sh build.sh",
+    "deploy": "sh deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fidgety/metrolink-dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fidgety/metrolink-dashboard/issues"
+  },
+  "homepage": "https://github.com/fidgety/metrolink-dashboard#readme",
+  "devDependencies": {
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.21"
+  }
+}
