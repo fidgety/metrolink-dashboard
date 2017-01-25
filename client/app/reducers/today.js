@@ -11,7 +11,7 @@ export default (state, action) => {
         };
     }
 
-    if (action.type === 'GET_TODAY_SUCCESS') {
+    if (action.type === 'GET_TODAY_SUCCESS' || action.type === 'GET_NOW_SUCCESS' || action.type === 'GET_DAY_SUCCESS') {
         const stationTotals = action.data.reduce((acc, results) => {
             const station = results.station;
             if (acc[station]) {

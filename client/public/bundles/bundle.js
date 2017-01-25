@@ -68,6 +68,14 @@
 	
 	var _today2 = _interopRequireDefault(_today);
 	
+	var _now = __webpack_require__(283);
+	
+	var _now2 = _interopRequireDefault(_now);
+	
+	var _day = __webpack_require__(285);
+	
+	var _day2 = _interopRequireDefault(_day);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// require('normalise.css');
@@ -82,7 +90,9 @@
 	        _reactRouter.Router,
 	        { history: history },
 	        _react2.default.createElement(_reactRouter.Redirect, { from: '/', to: '/today' }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/today', component: _today2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/day/:date', component: _day2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/today', component: _today2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/now', component: _now2.default })
 	    )
 	), document.getElementById('app'));
 
@@ -5491,7 +5501,7 @@
 	        };
 	    }
 	
-	    if (action.type === 'GET_TODAY_SUCCESS') {
+	    if (action.type === 'GET_TODAY_SUCCESS' || action.type === 'GET_NOW_SUCCESS' || action.type === 'GET_DAY_SUCCESS') {
 	        var _ret = function () {
 	            var stationTotals = action.data.reduce(function (acc, results) {
 	                var station = results.station;
@@ -31856,6 +31866,204 @@
 	        type: 'GET_TODAY',
 	        $payload: {
 	            url: 'http://139.59.169.252:3008/today'
+	        }
+	    };
+	};
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(46);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(266);
+	
+	var _now = __webpack_require__(284);
+	
+	var _now2 = _interopRequireDefault(_now);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	__webpack_require__(73);
+	
+	var selectState = function selectState(state) {
+	    return {
+	        total: state.today.total,
+	        stations: state.today.stations,
+	        device: state.today.device
+	    };
+	};
+	
+	var buildStationList = function buildStationList(stations) {
+	    return stations.map(function (station) {
+	        return _react2.default.createElement(
+	            'li',
+	            { key: station.station },
+	            station.station,
+	            ' - ',
+	            station.total
+	        );
+	    });
+	};
+	
+	exports.default = (0, _reactRedux.connect)(selectState)(_react2.default.createClass({
+	    componentWillMount: function componentWillMount() {
+	        this.props.dispatch((0, _now2.default)(10));
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'total' },
+	                this.props.total
+	            ),
+	            _react2.default.createElement(
+	                'ul',
+	                null,
+	                buildStationList(this.props.stations)
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                null,
+	                'total stations today - ',
+	                this.props.stations.length
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                null,
+	                'android ',
+	                this.props.device.android,
+	                ', ios ',
+	                this.props.device.ios
+	            )
+	        );
+	    }
+	}));
+
+/***/ },
+/* 284 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (mins) {
+	    return {
+	        type: 'GET_NOW',
+	        $payload: {
+	            url: 'http://139.59.169.252:3008/now/' + mins
+	        }
+	    };
+	};
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(46);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(266);
+	
+	var _day = __webpack_require__(286);
+	
+	var _day2 = _interopRequireDefault(_day);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	__webpack_require__(73);
+	
+	var selectState = function selectState(state) {
+	    return {
+	        total: state.today.total,
+	        stations: state.today.stations,
+	        device: state.today.device
+	    };
+	};
+	
+	var buildStationList = function buildStationList(stations) {
+	    return stations.map(function (station) {
+	        return _react2.default.createElement(
+	            'li',
+	            { key: station.station },
+	            station.station,
+	            ' - ',
+	            station.total
+	        );
+	    });
+	};
+	
+	exports.default = (0, _reactRedux.connect)(selectState)(_react2.default.createClass({
+	    componentWillMount: function componentWillMount() {
+	        this.props.dispatch((0, _day2.default)(this.props.params.date));
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'total' },
+	                this.props.total
+	            ),
+	            _react2.default.createElement(
+	                'ul',
+	                null,
+	                buildStationList(this.props.stations)
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                null,
+	                'total stations today - ',
+	                this.props.stations.length
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                null,
+	                'android ',
+	                this.props.device.android,
+	                ', ios ',
+	                this.props.device.ios
+	            )
+	        );
+	    }
+	}));
+
+/***/ },
+/* 286 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (date) {
+	    return {
+	        type: 'GET_DAY',
+	        $payload: {
+	            url: 'http://localhost:3008/day/' + date
 	        }
 	    };
 	};

@@ -8,6 +8,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 
 import Today from './pages/today';
+import Now from './pages/now';
+import SpecificDay from './pages/day';
 
 // require('normalise.css');
 
@@ -17,7 +19,9 @@ ReactDOM.render((
     <Provider store={store}>
         <Router history={history}>
             <Redirect from="/" to="/today" />
+            <Route path="/day/:date" component={SpecificDay} />
             <Route path="/today" component={Today} />
+            <Route path="/now" component={Now} />
         </Router>
     </Provider>
 ), document.getElementById('app'));

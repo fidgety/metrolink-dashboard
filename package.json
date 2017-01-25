@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
+    "dev": "webpack -w",
     "build": "sh build.sh",
     "deploy": "sh deploy.sh",
     "test": "echo \"no tests\""
