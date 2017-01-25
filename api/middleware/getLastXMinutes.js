@@ -1,12 +1,12 @@
 const mongo = require('./mongo');
+const moment = require('moment');
 
-var getAllRequestsForToday = (req, res, next) => {
-    let start = new Date();
-    start.setHours(0, 0, 0, 0);
+var getLastXMinutes = (req, res, next) => {
+    const lastXMinutes = moment().subtract(req.params.minutes, 'minutes');
 
     mongo.stations.find({
         date: {
-            $gte: start
+            $gte: lastXMinutes.toDate()
         }
     }, (err, cursor) => {
         cursor.toArray()
@@ -22,4 +22,4 @@ var getAllRequestsForToday = (req, res, next) => {
     });
 };
 
-module.exports = getAllRequestsForToday;
+module.exports = getLastXMinutes;

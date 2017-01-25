@@ -1,14 +1,21 @@
 const express = require('express');
 const cors = require('./middleware/cors');
+
 const getAllRequestsForToday = require('./middleware/getAllRequestsForToday');
+const getLastXMinutes = require('./middleware/getLastXMinutes');
 
 const app = express();
 
 app.use(cors);
 
-app.get('/calls/today',
+app.get('/today',
     getAllRequestsForToday,
-    cors,
+    (req, res) => {
+        res.json(res.locals.requests);
+    });
+
+app.get('/lastXMinutes/:minutes',
+    getLastXMinutes,
     (req, res) => {
         res.json(res.locals.requests);
     });

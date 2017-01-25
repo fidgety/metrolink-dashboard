@@ -3,7 +3,11 @@ export default (state, action) => {
         return {
             results: [],
             stations: [],
-            total: 0
+            total: 0,
+            device: {
+                android: 0,
+                ios: 0
+            }
         };
     }
 
@@ -26,7 +30,14 @@ export default (state, action) => {
         return {
             results: action.data.concat([]),
             total: action.data.length,
-            stations: arr.sort((item1, item2) => item2.total - item1.total)
+            stations: arr.sort((item1, item2) => item2.total - item1.total),
+            device: action.data.reduce((acc, request) => {
+                acc[request.device] += 1;
+                return acc;
+            }, {
+                android: 0,
+                ios: 0
+            })
         };
     }
 

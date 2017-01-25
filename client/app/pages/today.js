@@ -7,7 +7,8 @@ require('react-dom');
 const selectState = (state) => {
     return {
         total: state.today.total,
-        stations: state.today.stations
+        stations: state.today.stations,
+        device: state.today.device
     };
 };
 
@@ -26,6 +27,7 @@ export default connect(selectState)(React.createClass({
             <div className="total">{this.props.total}</div>
             <ul>{buildStationList(this.props.stations)}</ul>
 			<div>total stations today - {this.props.stations.length}</div>
+            <div>android {this.props.device.android}, ios {this.props.device.ios}</div>
         </div>;
     }
 }));
