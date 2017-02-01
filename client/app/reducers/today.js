@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 export default (state, action) => {
     if (!state) {
         return {
@@ -28,7 +30,9 @@ export default (state, action) => {
         }));
 
         return {
-            results: action.data.concat([]),
+            results: action.data.map(data => Object.assign({}, data, {
+                date: moment(data.date)
+            })),
             total: action.data.length,
             stations: arr.sort((item1, item2) => item2.total - item1.total),
             device: action.data.reduce((acc, request) => {

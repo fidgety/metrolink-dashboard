@@ -1,0 +1,41 @@
+.current-users {
+  font-family: 'Titan One', cursive;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 120px;
+  background: red;
+  color: white;
+  position: relative; }
+
+.current-users__title {
+  font-family: 'Titillium Web', sans-serif;
+  position: absolute;
+  padding: 18px;
+  font-size: 14px;
+  top: 0;
+  width: 100%;
+  line-height: 14px; }
+.station-timeline {
+  width: 1000px;
+  position: relative;
+  display: block;
+  height: 200px; }
+  .station-timeline__time {
+    position: absolute;
+    top: 10;
+    width: 1px;
+    height: 100%;
+    background: red;
+    white-space: nowrap;
+    list-style: none; }
+  .station-timeline__name {
+    position: absolute; }
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: 'Titillium Web', sans-serif; }
+
+/*# sourceMappingURL=styles.css.map*/

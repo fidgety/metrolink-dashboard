@@ -2,32 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import now from '../actionCreators/now';
 
+import Device from '../components/device';
+import CurrentUsers from '../components/currentUsers';
+import StationTimeline from '../components/stationTimeline';
+
 require('react-dom');
 
 const selectState = (state) => {
     return {
         total: state.today.total,
-        stations: state.today.stations,
+        results: state.today.results,
         device: state.today.device
     };
 };
 
-const buildStationList = stations => {
-    return stations.map(station => {
-        return <li key={station.station}>{station.station} - {station.total}</li>;
-    });
-};
-
 export default connect(selectState)(React.createClass({
     componentWillMount() {
+        setInterval(() => {
+            this.props.dispatch(now(10));
+        }, 10000);
         this.props.dispatch(now(10));
     },
     render() {
         return <div>
-            <div className="total">{this.props.total}</div>
-            <ul>{buildStationList(this.props.stations)}</ul>
-			<div>total stations today - {this.props.stations.length}</div>
-            <div>android {this.props.device.android}, ios {this.props.device.ios}</div>
+            <CurrentUsers currentUsers={this.props.total} />
+            <StationTimeline stations={this.props.results} />
+            <Device ios={this.props.device.android} android={this.props.device.ios} />
         </div>;
     }
 }));

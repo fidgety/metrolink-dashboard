@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import todaysRequests from '../actionCreators/today';
 
+import Device from '../components/device';
+
 require('react-dom');
 
 const selectState = (state) => {
@@ -27,7 +29,7 @@ export default connect(selectState)(React.createClass({
             <div className="total">{this.props.total}</div>
             <ul>{buildStationList(this.props.stations)}</ul>
 			<div>total stations today - {this.props.stations.length}</div>
-            <div>android {this.props.device.android}, ios {this.props.device.ios}</div>
+            <Device ios={this.props.device.android} android={this.props.device.ios} />
         </div>;
     }
 }));

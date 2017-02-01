@@ -11,7 +11,7 @@ import Today from './pages/today';
 import Now from './pages/now';
 import SpecificDay from './pages/day';
 
-// require('normalise.css');
+require('./base.scss');
 
 const history = syncHistoryWithStore(browserHistory, store);
 

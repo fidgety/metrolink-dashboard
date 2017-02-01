@@ -1,0 +1,20 @@
+.station-timeline {
+    width: 1000px;
+    position: relative;
+    display: block;
+    height: 200px;
+
+    &__time {
+        position: absolute;
+        top: 10;
+        width: 1px;
+        height: 100%;
+        background: red;
+        white-space: nowrap;
+        list-style: none;
+    }
+
+    &__name {
+        position: absolute;
+    }
+}
