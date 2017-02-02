@@ -27,7 +27,7 @@ export default connect(selectState)(React.createClass({
         return <div>
             <CurrentUsers currentUsers={this.props.total} />
             <StationTimeline stations={this.props.results} />
-            <Device ios={this.props.device.android} android={this.props.device.ios} />
+            ios {this.props.device.android} android {this.props.device.ios}
         </div>;
     }
 }));

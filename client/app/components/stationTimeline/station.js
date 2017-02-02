@@ -14,6 +14,6 @@ module.exports = React.createClass({
             left: reversed + '%'
         }}><div className="station-timeline__name" style={{
             top: (this.props.index * 20) % 200
-        }}>{this.props.station.station}</div></li>;
+        }}>{this.props.station.station}<div className="station-timeline__circle"></div></div></li>;
     }
 });

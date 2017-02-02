@@ -6,16 +6,30 @@
     border: 1px solid red;
     overflow: hidden;
 
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+
     &__time {
         position: absolute;
         top: 10;
         width: 1px;
         height: 100%;
-        background: red;
         white-space: nowrap;
         list-style: none;
         animation: 600s slideLeft linear, 0.5s appear linear;
     }
+
+	&__circle {
+		width: 10px;
+	    height: 10px;
+	    border: 1px solid red;
+	    border-radius: 9999px;
+	    position: absolute;
+	    right: -10px;
+	    bottom: -5px;
+	}
 
     &__name {
         right: 0;
@@ -23,6 +37,20 @@
         border-bottom: 1px solid red;
         padding-right: 5px;
     }
+
+	&__minutes {
+		height: 100%;
+		width: 1px;
+		background: black;
+		position: absolute;
+	}
+
+	&__seconds {
+		height: 100%;
+		width: 1px;
+		background: lightgrey;
+		position: absolute;
+	}
 }
 
 @keyframes appear {

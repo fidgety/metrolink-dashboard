@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/Users/matthewbeasley/code/metrolink-dashboard/client/public/bundles";
+/******/ 	__webpack_require__.p = "/Users/matthew.beasley/.ssh/metrolink-dashboard/client/public/bundles";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -62226,7 +62226,10 @@
 	            null,
 	            _react2.default.createElement(_currentUsers2.default, { currentUsers: this.props.total }),
 	            _react2.default.createElement(_stationTimeline2.default, { stations: this.props.results }),
-	            _react2.default.createElement(_device2.default, { ios: this.props.device.android, android: this.props.device.ios })
+	            'ios ',
+	            this.props.device.android,
+	            ' android ',
+	            this.props.device.ios
 	        );
 	    }
 	}));
@@ -62714,15 +62717,38 @@
 	
 	__webpack_require__(464);
 	
+	var makeLines = function makeLines() {
+	    return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(function (item, i) {
+	        return React.createElement('div', { key: i, className: 'station-timeline__minutes', style: {
+	                left: (i + 1) * 100
+	            } });
+	    });
+	};
+	
 	exports.default = function (props) {
 	    var stations = props.stations.map(function (station, i) {
 	        return React.createElement(Station, { station: station, index: i, key: station.date.format() + station.station });
 	    });
 	
+	    var minutes = makeLines();
+	
+	    var secs = [];
+	    for (var i = 0; i < 60; i++) {
+	        secs.push(React.createElement('div', { key: i, className: 'station-timeline__seconds', style: {
+	                left: (i + 1) * (1000 / 60)
+	            } }));
+	    }
+	
 	    return React.createElement(
-	        'ul',
+	        'div',
 	        { className: 'station-timeline' },
-	        stations
+	        secs,
+	        minutes,
+	        React.createElement(
+	            'ul',
+	            null,
+	            stations
+	        )
 	    );
 	};
 
@@ -62755,7 +62781,8 @@
 	                { className: 'station-timeline__name', style: {
 	                        top: this.props.index * 20 % 200
 	                    } },
-	                this.props.station.station
+	                this.props.station.station,
+	                React.createElement('div', { className: 'station-timeline__circle' })
 	            )
 	        );
 	    }

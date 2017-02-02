@@ -24,20 +24,40 @@
   height: 200px;
   border: 1px solid red;
   overflow: hidden; }
+  .station-timeline ul {
+    padding: 0;
+    margin: 0; }
   .station-timeline__time {
     position: absolute;
     top: 10;
     width: 1px;
     height: 100%;
-    background: red;
     white-space: nowrap;
     list-style: none;
     animation: 600s slideLeft linear, 0.5s appear linear; }
+  .station-timeline__circle {
+    width: 10px;
+    height: 10px;
+    border: 1px solid red;
+    border-radius: 9999px;
+    position: absolute;
+    right: -10px;
+    bottom: -5px; }
   .station-timeline__name {
     right: 0;
     position: absolute;
     border-bottom: 1px solid red;
     padding-right: 5px; }
+  .station-timeline__minutes {
+    height: 100%;
+    width: 1px;
+    background: black;
+    position: absolute; }
+  .station-timeline__seconds {
+    height: 100%;
+    width: 1px;
+    background: lightgrey;
+    position: absolute; }
 
 @keyframes appear {
   0% {
