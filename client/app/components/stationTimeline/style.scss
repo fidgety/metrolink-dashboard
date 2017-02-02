@@ -22,6 +22,13 @@
     }
 
 	&__circle {
+        .ios & {
+	        border: 1px solid blue;
+        }
+
+        .android & {
+            border: 1px solid red;
+        }
 		width: 10px;
 	    height: 10px;
 	    border: 1px solid red;
@@ -32,6 +39,13 @@
 	}
 
     &__name {
+        .ios & {
+	        border-bottom: 1px solid blue;
+        }
+
+        .android & {
+            border-bottom: 1px solid red;
+        }
         right: 0;
         position: absolute;
         border-bottom: 1px solid red;

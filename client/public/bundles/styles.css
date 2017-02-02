@@ -43,11 +43,19 @@
     position: absolute;
     right: -10px;
     bottom: -5px; }
+    .ios .station-timeline__circle {
+      border: 1px solid blue; }
+    .android .station-timeline__circle {
+      border: 1px solid red; }
   .station-timeline__name {
     right: 0;
     position: absolute;
     border-bottom: 1px solid red;
     padding-right: 5px; }
+    .ios .station-timeline__name {
+      border-bottom: 1px solid blue; }
+    .android .station-timeline__name {
+      border-bottom: 1px solid red; }
   .station-timeline__minutes {
     height: 100%;
     width: 1px;

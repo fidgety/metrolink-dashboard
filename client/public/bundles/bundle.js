@@ -146,9 +146,7 @@
 	    routing: _reactRouterRedux.routerReducer
 	});
 	
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(restMiddleware, _reduxThunk2.default // ,
-	// createLogger()
-	)(_redux.createStore);
+	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(restMiddleware, _reduxThunk2.default, (0, _reduxLogger2.default)())(_redux.createStore);
 	
 	var store = createStoreWithMiddleware(reducers);
 	
@@ -62226,9 +62224,9 @@
 	            null,
 	            _react2.default.createElement(_currentUsers2.default, { currentUsers: this.props.total }),
 	            _react2.default.createElement(_stationTimeline2.default, { stations: this.props.results }),
-	            'ios ',
+	            'android ',
 	            this.props.device.android,
-	            ' android ',
+	            ' ios ',
 	            this.props.device.ios
 	        );
 	    }
@@ -62712,13 +62710,13 @@
 	        var reversed = 100 - percentageOfWidth;
 	        return React.createElement(
 	            'li',
-	            { className: 'station-timeline__time', key: this.props.station.date.format(), style: {
+	            { className: 'station-timeline__time ' + this.props.station.device, key: this.props.station.date.format(), style: {
 	                    left: reversed + '%'
 	                } },
 	            React.createElement(
 	                'div',
 	                { className: 'station-timeline__name', style: {
-	                        top: this.props.index * 20 % 200
+	                        top: this.props.index * 30 % 160
 	                    } },
 	                this.props.station.station,
 	                React.createElement('div', { className: 'station-timeline__circle' })

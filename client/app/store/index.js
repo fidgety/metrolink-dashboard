@@ -25,8 +25,8 @@ const reducers = combineReducers({
 
 const createStoreWithMiddleware = applyMiddleware(
     restMiddleware,
-    thunkMiddleware// ,
-    // createLogger()
+    thunkMiddleware,
+    createLogger()
 )(createStore);
 
 const store = createStoreWithMiddleware(reducers);
