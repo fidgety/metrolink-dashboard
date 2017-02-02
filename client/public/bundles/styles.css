@@ -21,7 +21,9 @@
   width: 1000px;
   position: relative;
   display: block;
-  height: 200px; }
+  height: 200px;
+  border: 1px solid red;
+  overflow: hidden; }
   .station-timeline__time {
     position: absolute;
     top: 10;
@@ -29,9 +31,25 @@
     height: 100%;
     background: red;
     white-space: nowrap;
-    list-style: none; }
+    list-style: none;
+    animation: 600s slideLeft linear, 0.5s appear linear; }
   .station-timeline__name {
-    position: absolute; }
+    right: 0;
+    position: absolute;
+    border-bottom: 1px solid red;
+    padding-right: 5px; }
+
+@keyframes appear {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0px); }
+  100% {
+    transform: translateX(-200px); } }
 * {
   box-sizing: border-box; }
 
