@@ -20,7 +20,7 @@ export default connect(selectState)(React.createClass({
     componentWillMount() {
         setInterval(() => {
             this.props.dispatch(now(10));
-        }, 10000);
+        }, 1000);
         this.props.dispatch(now(10));
     },
     render() {

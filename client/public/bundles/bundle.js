@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/Users/matthew.beasley/.ssh/metrolink-dashboard/client/public/bundles";
+/******/ 	__webpack_require__.p = "/Users/matthewbeasley/code/metrolink-dashboard/client/public/bundles";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -62217,7 +62217,7 @@
 	
 	        setInterval(function () {
 	            _this.props.dispatch((0, _now2.default)(10));
-	        }, 10000);
+	        }, 1000);
 	        this.props.dispatch((0, _now2.default)(10));
 	    },
 	    render: function render() {
@@ -62252,67 +62252,6 @@
 	        }
 	    };
 	};
-	
-	// export default () => ({
-	//     type: 'GET_NOW_SUCCESS',
-	//     data: [
-	//         {
-	//             station: 'Deansgate-Castlefield',
-	//             date: '2017-01-31T19:54:33.006Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Market-Street',
-	//             date: '2017-01-31T19:54:38.904Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Piccadilly-Gardens',
-	//             date: '2017-01-31T19:54:45.690Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Cornbrook',
-	//             date: '2017-01-31T19:56:10.273Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T19:56:16.161Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T19:58:19.320Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Piccadilly-Gardens',
-	//             date: '2017-01-31T19:58:19.510Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T19:59:32.763Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T20:00:04.637Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T20:02:16.965Z',
-	//             device: 'ios'
-	//         },
-	//         {
-	//             station: 'Northern-Moor',
-	//             date: '2017-01-31T20:02:59.917Z',
-	//             device: 'ios'
-	//         }
-	//     ]
-	// });
 
 /***/ },
 /* 455 */
