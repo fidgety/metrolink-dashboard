@@ -62225,7 +62225,6 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_currentUsers2.default, { currentUsers: this.props.total }),
 	            _react2.default.createElement(_stationTimeline2.default, { stations: this.props.results }),
 	            'android ',
 	            this.props.device.android,
@@ -62662,7 +62661,7 @@
 	        return React.createElement(
 	            'div',
 	            { key: i, className: 'station-timeline__minutes', style: {
-	                    left: (i + 1) * 100
+	                    left: (i + 1) / 10 * 100 + '%'
 	                } },
 	            React.createElement(
 	                'div',
@@ -62683,7 +62682,7 @@
 	    var secs = [];
 	    for (var i = 0; i < 60; i++) {
 	        secs.push(React.createElement('div', { key: i, className: 'station-timeline__seconds', style: {
-	                left: (i + 1) * (1000 / 60)
+	                left: (i + 1) / 60 * 100 + '%'
 	            } }));
 	    }
 	

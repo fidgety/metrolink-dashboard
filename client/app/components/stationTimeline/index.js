@@ -6,7 +6,7 @@ require('./style.scss');
 const makeLines = () => {
     return [0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, i) => {
         return <div key={i} className="station-timeline__minutes" style={{
-            left: ((i + 1) * 100)
+            left: (((i + 1) / 10) * 100) + '%'
         }}><div className="station-timeline__label">{9 - i}</div></div>;
     });
 };
@@ -21,7 +21,7 @@ export default (props) => {
     let secs = [];
     for (var i = 0; i < 60; i++) {
         secs.push(<div key={i} className="station-timeline__seconds" style={{
-            left: ((i + 1) * (1000 / 60))
+            left: (((i + 1) / 60) * 100) + '%'
         }}/>);
     }
 
