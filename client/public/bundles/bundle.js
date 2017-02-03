@@ -5677,6 +5677,7 @@
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
 	var moment = __webpack_require__(47);
+	var stations = __webpack_require__(468);
 	
 	exports.default = function (state, action) {
 	    if (!state) {
@@ -5714,7 +5715,9 @@
 	                v: {
 	                    results: action.data.map(function (data) {
 	                        return Object.assign({}, data, {
-	                            date: moment(data.date)
+	                            date: moment(data.date),
+	                            station: data.station.replace(/-/g, ' '),
+	                            route: stations[data.station.replace(/-/g, ' ')]
 	                        });
 	                    }),
 	                    total: action.data.length,
@@ -62655,10 +62658,18 @@
 	__webpack_require__(464);
 	
 	var makeLines = function makeLines() {
-	    return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(function (item, i) {
-	        return React.createElement('div', { key: i, className: 'station-timeline__minutes', style: {
-	                left: (i + 1) * 100
-	            } });
+	    return [0, 0, 0, 0, 0, 0, 0, 0, 0].map(function (item, i) {
+	        return React.createElement(
+	            'div',
+	            { key: i, className: 'station-timeline__minutes', style: {
+	                    left: (i + 1) * 100
+	                } },
+	            React.createElement(
+	                'div',
+	                { className: 'station-timeline__label' },
+	                9 - i
+	            )
+	        );
 	    });
 	};
 	
@@ -62710,7 +62721,7 @@
 	        var reversed = 100 - percentageOfWidth;
 	        return React.createElement(
 	            'li',
-	            { className: 'station-timeline__time ' + this.props.station.device, key: this.props.station.date.format(), style: {
+	            { className: 'station-timeline__time ' + this.props.station.device + ' ' + this.props.station.route, key: this.props.station.date.format(), style: {
 	                    left: reversed + '%'
 	                } },
 	            React.createElement(
@@ -62835,6 +62846,108 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 468 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {
+	    'Abraham Moss': 'G',
+	    Altrincham: 'A',
+	    Anchorage: 'D',
+	    'Ashton Moss': 'E',
+	    'Ashton West': 'E',
+	    'Ashton-Under-Lyne': 'E',
+	    Audenshaw: 'E',
+	    Baguley: 'F',
+	    'Barlow Moor Road': 'F',
+	    Benchill: 'F',
+	    'Besses o\'th\'Barn': 'G',
+	    'Bowker Vale': 'G',
+	    Broadway: 'E',
+	    Brooklands: 'A',
+	    'Burton Road': 'C',
+	    Bury: 'G',
+	    'Cemetery Road': 'E',
+	    'Central Park': 'H',
+	    Chorlton: 'J',
+	    'Clayton Hall': 'E',
+	    Cornbrook: 'A',
+	    Crossacres: 'F',
+	    Crumpsall: 'G',
+	    'Dane Road': 'A',
+	    'Deansgate-Castlefield': 'P',
+	    Derker: 'H',
+	    'Didsbury Village': 'C',
+	    Droylsden: 'E',
+	    'East Didsbury': 'C',
+	    Eccles: 'E',
+	    'Edge Lane': 'E',
+	    'Etihad Campus': 'G',
+	    'Exchange Quay': 'D',
+	    'Exchange Square': 'I',
+	    Failsworth: 'H',
+	    Firswood: 'J',
+	    Freehold: 'H',
+	    Martinscroft: 'F',
+	    'Old Trafford': 'A',
+	    Radcliffe: 'G',
+	    'Salford Quays': 'D',
+	    Stretford: 'A',
+	    'Trafford Bar': 'A',
+	    'Kingsway Business Park': 'I',
+	    Langworthy: 'E',
+	    'Navigation Road': 'A',
+	    'Harbour City': 'D',
+	    'Heaton Park': 'A',
+	    Hollinwood: 'H',
+	    'Holt Town': 'G',
+	    'Market Street': 'P',
+	    MediaCityUK: 'D',
+	    'Oldham King Street': 'H',
+	    Ladywell: 'E',
+	    'Manchester Airport': 'F',
+	    Milnrow: 'I',
+	    Monsall: 'H',
+	    'Moor Road': 'F',
+	    'New Islington': 'P',
+	    Newbold: 'I',
+	    Newhey: 'I',
+	    'Newton Heath and Moston': 'H',
+	    'Northern Moor': 'F',
+	    'Oldham Central': 'H',
+	    'Oldham Mumps': 'H',
+	    'Peel Hall': 'F',
+	    'Piccadilly Gardens': 'P',
+	    Piccadilly: 'P',
+	    Pomona: 'D',
+	    Prestwich: 'G',
+	    'Queens Road': 'G',
+	    'St Peters Square': 'P',
+	    'Robinswood Road': 'F',
+	    'Rochdale Railway station': 'I',
+	    'Rochdale Town Centre': 'I',
+	    Roundthorn: 'F',
+	    Sale: 'A',
+	    'Sale Water Park': 'F',
+	    Shadowmoss: 'F',
+	    'Shaw and Crompton': 'H',
+	    Shudehill: 'P',
+	    'South Chadderton': 'H',
+	    'St Werburghs Road': 'F',
+	    Timperley: 'A',
+	    Velopark: 'E',
+	    Victoria: 'P',
+	    Weaste: 'E',
+	    'West Didsbury': 'H',
+	    Westwood: 'H',
+	    Whitefield: 'G',
+	    Withington: 'H',
+	    'Wythenshawe Park': 'F',
+	    'Wythenshawe Town Centre': 'F'
+	};
 
 /***/ }
 /******/ ]);

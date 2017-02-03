@@ -1,4 +1,5 @@
 const moment = require('moment');
+const stations = require('../constants/stations');
 
 export default (state, action) => {
     if (!state) {
@@ -31,7 +32,9 @@ export default (state, action) => {
 
         return {
             results: action.data.map(data => Object.assign({}, data, {
-                date: moment(data.date)
+                date: moment(data.date),
+                station: data.station.replace(/-/g, ' '),
+                route: stations[data.station.replace(/-/g, ' ')]
             })),
             total: action.data.length,
             stations: arr.sort((item1, item2) => item2.total - item1.total),

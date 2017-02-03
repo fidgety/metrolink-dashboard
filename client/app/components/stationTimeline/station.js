@@ -10,7 +10,7 @@ module.exports = React.createClass({
         const secDiff = now.diff(this.props.station.date, 'seconds');
         const percentageOfWidth = (secDiff / 600) * 100;
         const reversed = 100 - percentageOfWidth;
-        return <li className={`station-timeline__time ${this.props.station.device}`} key={this.props.station.date.format()} style={{
+        return <li className={`station-timeline__time ${this.props.station.device} ${this.props.station.route}`} key={this.props.station.date.format()} style={{
             left: reversed + '%'
         }}><div className="station-timeline__name" style={{
             top: (this.props.index * 30) % 160

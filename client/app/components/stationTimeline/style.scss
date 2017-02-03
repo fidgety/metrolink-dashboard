@@ -1,15 +1,41 @@
+$A: #F59300;
+$C: #009F37;
+$D: #009EE6;
+$E: #F286B6;
+$F: #005792;
+$G: #A04998;
+$H: #85AF00;
+$I: #005A59;
+$J: #EA298A;
+$P: #FFCE00;
+
+
 .station-timeline {
     width: 1000px;
     position: relative;
     display: block;
     height: 200px;
-    border: 1px solid red;
     overflow: hidden;
+    padding: 10px 0;
 
 	ul {
 		padding: 0;
 		margin: 0;
 	}
+
+    &__label {
+        position: absolute;
+        white-space: nowrap;
+        bottom: 10px;
+        left: -12px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        background: black;
+        color: white;
+        border-radius: 9999px;
+    }
 
     &__time {
         position: absolute;
@@ -29,6 +55,43 @@
         .android & {
             border: 1px solid red;
         }
+
+        .A & {
+            border: 1px solid $A;
+        }
+
+        .C & {
+            border: 1px solid $C;
+        }
+
+        .E & {
+            border: 1px solid $E;
+        }
+
+        .F & {
+            border: 1px solid $F;
+        }
+
+        .G & {
+            border: 1px solid $G;
+        }
+
+        .H & {
+            border: 1px solid $H;
+        }
+
+        .I & {
+            border: 1px solid $I;
+        }
+
+        .J & {
+            border: 1px solid $J;
+        }
+
+        .P & {
+            border: 1px solid $P;
+        }
+
 		width: 10px;
 	    height: 10px;
 	    border: 1px solid red;
@@ -46,10 +109,47 @@
         .android & {
             border-bottom: 1px solid red;
         }
+
+        .A & {
+            border-bottom: 1px solid $A;
+        }
+
+        .C & {
+            border-bottom: 1px solid $C;
+        }
+
+        .E & {
+            border-bottom: 1px solid $E;
+        }
+
+        .F & {
+            border-bottom: 1px solid $F;
+        }
+
+        .G & {
+            border-bottom: 1px solid $G;
+        }
+
+        .H & {
+            border-bottom: 1px solid $H;
+        }
+
+        .I & {
+            border-bottom: 1px solid $I;
+        }
+
+        .J & {
+            border-bottom: 1px solid $J;
+        }
+
+        .P & {
+            border-bottom: 1px solid $P;
+        }
+
         right: 0;
         position: absolute;
         border-bottom: 1px solid red;
-        padding-right: 5px;
+        padding: 1px 5px;
     }
 
 	&__minutes {

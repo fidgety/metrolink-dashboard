@@ -4,10 +4,10 @@ const Station = require('./station');
 require('./style.scss');
 
 const makeLines = () => {
-    return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, i) => {
+    return [0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, i) => {
         return <div key={i} className="station-timeline__minutes" style={{
             left: ((i + 1) * 100)
-        }}/>;
+        }}><div className="station-timeline__label">{9 - i}</div></div>;
     });
 };
 
