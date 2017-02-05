@@ -1,26 +1,14 @@
-const mongo = require('./mongo');
+const runQuery = require('./findAndAddToLocals');
 
 var getAllRequestsForToday = (req, res, next) => {
     let start = new Date();
     start.setHours(0, 0, 0, 0);
 
-    mongo.stations.find({
+    runQuery({
         date: {
             $gte: start
         }
-    }, (err, cursor) => {
-        cursor.toArray()
-            .then(results => results.map(result => ({
-                station: result.station,
-                date: result.date,
-                device: result.device,
-                userAgent: result.userAgent
-            })))
-            .then(mappedResults => {
-                res.locals.requests = mappedResults;
-                next();
-            });
-    });
+    }, res, next);
 };
 
 module.exports = getAllRequestsForToday;

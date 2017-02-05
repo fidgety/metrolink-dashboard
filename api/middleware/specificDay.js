@@ -1,28 +1,16 @@
-const mongo = require('./mongo');
+const runQuery = require('./findAndAddToLocals');
 const moment = require('moment');
 
-var specificDay = (req, res, next) => {
+var getLastXMinutes = (req, res, next) => {
     const startOfDay = moment(req.params.date).startOf('day');
     const endOfDay = moment(req.params.date).endOf('day');
 
-    mongo.stations.find({
+    runQuery({
         date: {
             $gte: startOfDay.toDate(),
             $lte: endOfDay.toDate()
         }
-    }, (err, cursor) => {
-        cursor.toArray()
-            .then(results => results.map(result => ({
-                station: result.station,
-                date: result.date,
-                device: result.device,
-                userAgent: result.userAgent
-            })))
-            .then(mappedResults => {
-                res.locals.requests = mappedResults;
-                next();
-            });
-    });
+    }, res, next);
 };
 
-module.exports = specificDay;
+module.exports = getLastXMinutes;
