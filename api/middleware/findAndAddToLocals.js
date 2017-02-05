@@ -1,4 +1,4 @@
-const mongo = require('mongo');
+const mongo = require('./mongo');
 
 module.exports = (query, res, next) => {
     mongo.stations.find(query, (err, cursor) => {
