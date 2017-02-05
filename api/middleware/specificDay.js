@@ -15,7 +15,8 @@ var specificDay = (req, res, next) => {
             .then(results => results.map(result => ({
                 station: result.station,
                 date: result.date,
-                device: result.device
+                device: result.device,
+                userAgent: result.userAgent
             })))
             .then(mappedResults => {
                 res.locals.requests = mappedResults;
