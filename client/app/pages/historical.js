@@ -11,7 +11,8 @@ const selectState = (state) => {
     return {
         total: state.today.total,
         stations: state.today.stations,
-        device: state.today.device
+        device: state.today.device,
+        history: state.dateRange.totals
     };
 };
 

@@ -4,6 +4,7 @@ import restMiddlewareCreator from 'redux-fetch-middleware';
 import createLogger from 'redux-logger';
 import { routerReducer } from 'react-router-redux';
 import today from '../reducers/today';
+import dateRange from '../reducers/dateRange';
 
 const globalRestOptions = {
     suffix: ['REQUEST', 'SUCCESS', 'FAILURE'],
@@ -20,6 +21,7 @@ const restMiddleware = restMiddlewareCreator(globalRestOptions);
 
 const reducers = combineReducers({
     today,
+    dateRange,
     routing: routerReducer
 });
 

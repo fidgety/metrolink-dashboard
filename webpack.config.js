@@ -30,7 +30,7 @@ const config = {
                     'css?sourceMap!' +
                     'sass?sourceMap&' +
                     'includePaths[]=' +
-                    './client/sass-globals')
+                    './client/app/sass-globals')
         },
         {
             test: /\.css$/,
@@ -41,9 +41,9 @@ const config = {
         }]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
-        }),
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify('production')
+        // }),
         new ExtractTextPlugin('./styles.css')
     ],
     node: {

@@ -1,14 +1,4 @@
-$A: #F59300;
-$C: #009F37;
-$D: #009EE6;
-$E: #F286B6;
-$F: #005792;
-$G: #A04998;
-$H: #85AF00;
-$I: #005A59;
-$J: #EA298A;
-$P: #FFCE00;
-
+@import "colors";
 
 .station-timeline {
     width: 100%;
@@ -64,6 +54,10 @@ $P: #FFCE00;
             border: 1px solid $C;
         }
 
+        .D & {
+            border: 1px solid $D;
+        }
+
         .E & {
             border: 1px solid $E;
         }
@@ -116,6 +110,10 @@ $P: #FFCE00;
 
         .C & {
             border-bottom: 1px solid $C;
+        }
+
+        .D & {
+            border-bottom: 1px solid $D;
         }
 
         .E & {

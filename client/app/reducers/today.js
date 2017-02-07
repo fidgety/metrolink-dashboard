@@ -27,7 +27,8 @@ export default (state, action) => {
 
         const arr = Object.keys(stationTotals).map(station => ({
             station,
-            total: stationTotals[station]
+            total: stationTotals[station],
+            route: stations[station.replace(/-/g, ' ')]
         }));
 
         return {

@@ -21,8 +21,13 @@ app.get('/now/:minutes',
         res.json(res.locals.requests);
     });
 
-
 app.get('/day/:date',
+    specificDay,
+    (req, res) => {
+        res.json(res.locals.requests);
+    });
+
+app.get('/range/from/:start/to/:end',
     specificDay,
     (req, res) => {
         res.json(res.locals.requests);
