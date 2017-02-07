@@ -4,6 +4,7 @@ const cors = require('./middleware/cors');
 const getAllRequestsForToday = require('./middleware/getAllRequestsForToday');
 const getLastXMinutes = require('./middleware/getLastXMinutes');
 const specificDay = require('./middleware/specificDay');
+const range = require('./middleware/getAllRequestsForRange');
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.get('/day/:date',
     });
 
 app.get('/range/from/:start/to/:end',
-    specificDay,
+    range,
     (req, res) => {
         res.json(res.locals.requests);
     });

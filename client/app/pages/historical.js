@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import todaysRequests from '../actionCreators/today';
+import rangeOfRequests from '../actionCreators/range';
 
 import Device from '../components/device';
 import StationSquares from '../components/stationSquares';
@@ -18,7 +18,7 @@ const selectState = (state) => {
 
 export default connect(selectState)(React.createClass({
     componentWillMount() {
-        this.props.dispatch(todaysRequests());
+        this.props.dispatch(rangeOfRequests(this.props.params.start, this.props.params.end));
     },
     render() {
         return <div>
