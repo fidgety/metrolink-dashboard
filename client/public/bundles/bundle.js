@@ -83,7 +83,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// eslint-disable-line
-	__webpack_require__(472);
+	__webpack_require__(473);
 	
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, _store2.default);
 	
@@ -5703,7 +5703,7 @@
 	        };
 	    }
 	
-	    if (action.type === 'GET_TODAY_SUCCESS' || action.type === 'GET_NOW_SUCCESS' || action.type === 'GET_DAY_SUCCESS') {
+	    if (action.type === 'GET_RANGE_SUCCESS' || action.type === 'GET_TODAY_SUCCESS' || action.type === 'GET_NOW_SUCCESS' || action.type === 'GET_DAY_SUCCESS') {
 	        var _ret = function () {
 	            var stationTotals = action.data.reduce(function (acc, results) {
 	                var station = results.station;
@@ -20760,7 +20760,7 @@
 	            totals: []
 	        };
 	    }
-	    console.log(action.type);
+	
 	    if (action.type === 'GET_RANGE_SUCCESS') {
 	        var _ret = function () {
 	            var current = moment('2016-01-01').startOf('day');
@@ -20768,7 +20768,7 @@
 	                v: {
 	                    totals: action.data.reduce(function (acc, request) {
 	                        var currentDate = moment(request.date).startOf('day');
-	                        console.log(currentDate.format(), current.format(), current.isSame(currentDate));
+	
 	                        if (current.isSame(currentDate)) {
 	                            acc[acc.length - 1] = acc[acc.length - 1] + 1;
 	                        } else {
@@ -20776,7 +20776,6 @@
 	                        }
 	
 	                        current = currentDate;
-	                        console.log(acc);
 	                        return acc;
 	                    }, [])
 	                }
@@ -63054,7 +63053,7 @@
 	
 	var _reactRedux = __webpack_require__(390);
 	
-	var _range = __webpack_require__(473);
+	var _range = __webpack_require__(472);
 	
 	var _range2 = _interopRequireDefault(_range);
 	
@@ -63108,12 +63107,6 @@
 /* 472 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 473 */
-/***/ function(module, exports) {
-
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -63128,6 +63121,12 @@
 	        }
 	    };
 	};
+
+/***/ },
+/* 473 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
