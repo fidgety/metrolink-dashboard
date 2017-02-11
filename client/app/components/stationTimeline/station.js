@@ -1,5 +1,6 @@
 const React = require('react');
 const moment = require('moment');
+let counter = 0;
 
 module.exports = React.createClass({
     shouldComponentUpdate() {
@@ -13,7 +14,7 @@ module.exports = React.createClass({
         return <li className={`station-timeline__time ${this.props.station.device} ${this.props.station.route}`} key={this.props.station.date.format()} style={{
             left: reversed + '%'
         }}><div className="station-timeline__name" style={{
-            top: (this.props.index * 30) % 250
+            top: (counter++ * 30) % 250
         }}>{this.props.station.station}<div className="station-timeline__circle"></div></div></li>;
     }
 });

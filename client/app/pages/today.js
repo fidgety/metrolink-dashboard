@@ -11,7 +11,8 @@ const selectState = (state) => {
     return {
         total: state.today.total,
         stations: state.today.stations,
-        device: state.today.device
+        device: state.today.device,
+        totalSessions: state.today.totalSessions
     };
 };
 
@@ -19,11 +20,17 @@ export default connect(selectState)(React.createClass({
     componentWillMount() {
         this.props.dispatch(todaysRequests());
     },
+    componentWillUpdate() {
+        setTimeout(() => {
+            this.props.dispatch(todaysRequests());
+        }, 10000);
+    },
     render() {
         return <div>
-            <div className="total">{this.props.total}</div>
+            <div className="total">total hits {this.props.total}</div>
+            <div className="totalSessions">total sessions {this.props.totalSessions}</div>
+			<div>total stations {this.props.stations.length}</div>
             <StationSquares stations={this.props.stations} />
-			<div>total stations today - {this.props.stations.length}</div>
             <Device ios={this.props.device.android} android={this.props.device.ios} />
         </div>;
     }

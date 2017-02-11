@@ -7,6 +7,7 @@ const buildStationList = stations => {
         return <li className={`station-square ${station.route}`} key={station.station}>
             <div className="station-square__name">{station.station}</div>
             <div className="station-square__total">{station.total}</div>
+            <div className="station-square__sessions">{station.sessions} {station.sessions === 1 ? 'session' : 'sessions'}</div>
         </li>;
     });
 };

@@ -35,6 +35,8 @@
   .station-square__total {
     font-size: 75px;
     text-align: center; }
+  .station-square__sessions {
+    text-align: center; }
 .current-users {
   font-family: 'Titan One', cursive;
   width: 200px;

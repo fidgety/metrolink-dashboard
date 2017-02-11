@@ -13,7 +13,7 @@ const makeLines = () => {
 
 export default (props) => {
     const stations = props.stations.map((station, i) => {
-        return <Station station={station} index={i} key={station.date.format() + station.station}/>;
+        return <Station station={station} key={station.date.format() + station.station}/>;
     });
 
     const minutes = makeLines();

@@ -12,7 +12,8 @@ const selectState = (state) => {
     return {
         total: state.today.total,
         results: state.today.results,
-        device: state.today.device
+        device: state.today.device,
+        totalSessions: state.today.totalSessions
     };
 };
 
@@ -26,7 +27,8 @@ export default connect(selectState)(React.createClass({
     render() {
         return <div>
             <StationTimeline stations={this.props.results} />
-            android {this.props.device.android} ios {this.props.device.ios}
+            android {this.props.device.android} ios {this.props.device.ios},
+            current sessions {this.props.totalSessions}
         </div>;
     }
 }));

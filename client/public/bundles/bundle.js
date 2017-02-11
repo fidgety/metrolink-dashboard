@@ -5687,8 +5687,21 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var moment = __webpack_require__(47);
 	var stations = __webpack_require__(157);
+	
+	var getSessions = function getSessions(data) {
+	    return data.reduce(function (acc, result) {
+	        acc[result.sessionID] ? acc[result.sessionID]++ : acc[result.sessionID] = 0;
+	        return acc;
+	    }, {});
+	};
+	
+	var amountOfSessions = function amountOfSessions(sessions) {
+	    return Object.keys(sessions).length;
+	};
 	
 	exports.default = function (state, action) {
 	    if (!state) {
@@ -5699,7 +5712,8 @@
 	            device: {
 	                android: 0,
 	                ios: 0
-	            }
+	            },
+	            totalSessions: 0
 	        };
 	    }
 	
@@ -5708,18 +5722,27 @@
 	            var stationTotals = action.data.reduce(function (acc, results) {
 	                var station = results.station;
 	                if (acc[station]) {
-	                    acc[station] += 1;
+	                    acc[station].count += 1;
+	                    acc[station].sessions[results.sessionID] = true;
 	                } else {
-	                    acc[station] = 1;
+	                    acc[station] = {
+	                        sessions: _defineProperty({}, results.sessionID, true),
+	                        count: 1
+	                    };
 	                }
 	                return acc;
 	            }, {});
 	
+	            var sessions = getSessions(action.data);
+	
+	            var totalSessions = amountOfSessions(sessions);
+	
 	            var arr = Object.keys(stationTotals).map(function (station) {
 	                return {
 	                    station: station,
-	                    total: stationTotals[station],
-	                    route: stations[station.replace(/-/g, ' ')]
+	                    total: stationTotals[station].count,
+	                    route: stations[station.replace(/-/g, ' ')],
+	                    sessions: Object.keys(stationTotals[station].sessions).length
 	                };
 	            });
 	
@@ -5732,6 +5755,7 @@
 	                            route: stations[data.station.replace(/-/g, ' ')]
 	                        });
 	                    }),
+	                    totalSessions: totalSessions,
 	                    total: action.data.length,
 	                    stations: arr.sort(function (item1, item2) {
 	                        return item2.total - item1.total;
@@ -48186,13 +48210,21 @@
 	    return {
 	        total: state.today.total,
 	        stations: state.today.stations,
-	        device: state.today.device
+	        device: state.today.device,
+	        totalSessions: state.today.totalSessions
 	    };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(selectState)(_react2.default.createClass({
 	    componentWillMount: function componentWillMount() {
 	        this.props.dispatch((0, _today2.default)());
+	    },
+	    componentWillUpdate: function componentWillUpdate() {
+	        var _this = this;
+	
+	        setTimeout(function () {
+	            _this.props.dispatch((0, _today2.default)());
+	        }, 10000);
 	    },
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -48201,15 +48233,22 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'total' },
+	                'total hits ',
 	                this.props.total
 	            ),
-	            _react2.default.createElement(_stationSquares2.default, { stations: this.props.stations }),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'totalSessions' },
+	                'total sessions ',
+	                this.props.totalSessions
+	            ),
 	            _react2.default.createElement(
 	                'div',
 	                null,
-	                'total stations today - ',
+	                'total stations ',
 	                this.props.stations.length
 	            ),
+	            _react2.default.createElement(_stationSquares2.default, { stations: this.props.stations }),
 	            _react2.default.createElement(_device2.default, { ios: this.props.device.android, android: this.props.device.ios })
 	        );
 	    }
@@ -62346,6 +62385,13 @@
 	                'div',
 	                { className: 'station-square__total' },
 	                station.total
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'station-square__sessions' },
+	                station.sessions,
+	                ' ',
+	                station.sessions === 1 ? 'session' : 'sessions'
 	            )
 	        );
 	    });
@@ -62406,7 +62452,8 @@
 	    return {
 	        total: state.today.total,
 	        results: state.today.results,
-	        device: state.today.device
+	        device: state.today.device,
+	        totalSessions: state.today.totalSessions
 	    };
 	};
 	
@@ -62427,7 +62474,9 @@
 	            'android ',
 	            this.props.device.android,
 	            ' ios ',
-	            this.props.device.ios
+	            this.props.device.ios,
+	            ', current sessions ',
+	            this.props.totalSessions
 	        );
 	    }
 	}));
@@ -62871,7 +62920,7 @@
 	
 	exports.default = function (props) {
 	    var stations = props.stations.map(function (station, i) {
-	        return React.createElement(Station, { station: station, index: i, key: station.date.format() + station.station });
+	        return React.createElement(Station, { station: station, key: station.date.format() + station.station });
 	    });
 	
 	    var minutes = makeLines();
@@ -62904,6 +62953,7 @@
 	
 	var React = __webpack_require__(159);
 	var moment = __webpack_require__(47);
+	var counter = 0;
 	
 	module.exports = React.createClass({
 	    displayName: 'exports',
@@ -62923,7 +62973,7 @@
 	            React.createElement(
 	                'div',
 	                { className: 'station-timeline__name', style: {
-	                        top: this.props.index * 30 % 250
+	                        top: counter++ * 30 % 250
 	                    } },
 	                this.props.station.station,
 	                React.createElement('div', { className: 'station-timeline__circle' })

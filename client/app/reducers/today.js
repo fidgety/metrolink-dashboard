@@ -1,6 +1,13 @@
 const moment = require('moment');
 const stations = require('../constants/stations');
 
+const getSessions = data => data.reduce((acc, result) => {
+    acc[result.sessionID] ? acc[result.sessionID]++ : acc[result.sessionID] = 0;
+    return acc;
+}, {});
+
+const amountOfSessions = sessions => Object.keys(sessions).length;
+
 export default (state, action) => {
     if (!state) {
         return {
@@ -10,7 +17,8 @@ export default (state, action) => {
             device: {
                 android: 0,
                 ios: 0
-            }
+            },
+            totalSessions: 0
         };
     }
 
@@ -18,17 +26,28 @@ export default (state, action) => {
         const stationTotals = action.data.reduce((acc, results) => {
             const station = results.station;
             if (acc[station]) {
-                acc[station] += 1;
+                acc[station].count += 1;
+                acc[station].sessions[results.sessionID] = true;
             } else {
-                acc[station] = 1;
+                acc[station] = {
+                    sessions: {
+                        [results.sessionID]: true
+                    },
+                    count: 1
+                };
             }
             return acc;
         }, {});
 
+        const sessions = getSessions(action.data);
+
+        const totalSessions = amountOfSessions(sessions);
+
         const arr = Object.keys(stationTotals).map(station => ({
             station,
-            total: stationTotals[station],
-            route: stations[station.replace(/-/g, ' ')]
+            total: stationTotals[station].count,
+            route: stations[station.replace(/-/g, ' ')],
+            sessions: Object.keys(stationTotals[station].sessions).length
         }));
 
         return {
@@ -37,6 +56,7 @@ export default (state, action) => {
                 station: data.station.replace(/-/g, ' '),
                 route: stations[data.station.replace(/-/g, ' ')]
             })),
+            totalSessions,
             total: action.data.length,
             stations: arr.sort((item1, item2) => item2.total - item1.total),
             device: action.data.reduce((acc, request) => {
