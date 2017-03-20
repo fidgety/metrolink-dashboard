@@ -12,7 +12,7 @@ const selectState = (state) => {
         total: state.today.total,
         stations: state.today.stations,
         device: state.today.device,
-        history: state.dateRange.totals
+        totalSessions: state.today.totalSessions
     };
 };
 
@@ -22,9 +22,10 @@ export default connect(selectState)(React.createClass({
     },
     render() {
         return <div>
-            <div className="total">{this.props.total}</div>
+            <div className="total">total hits {this.props.total}</div>
+            <div className="totalSessions">total sessions {this.props.totalSessions}</div>
+			<div>total stations {this.props.stations.length}</div>
             <StationSquares stations={this.props.stations} />
-			<div>total stations today - {this.props.stations.length}</div>
             <Device ios={this.props.device.android} android={this.props.device.ios} />
         </div>;
     }
